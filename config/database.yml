@@ -1,0 +1,20 @@
+# Configure Using Gemfile
+# gem 'pg'
+#
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: sat_1
+  pool: 5
+  username: postgres
+  password: bruceyue
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: sat_1_test
+  pool: 5
+  username: postgres
+  password:
+
+
