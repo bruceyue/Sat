@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130824145330) do
+ActiveRecord::Schema.define(version: 20130906105936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,100 @@ ActiveRecord::Schema.define(version: 20130824145330) do
     t.string   "picture"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  create_table "comments", force: true do |t|
+    t.text     "body"
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
+  add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
+
+  create_table "likes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["article_id"], name: "index_likes_on_article_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+
+  create_table "rails_admin_histories", force: true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      limit: 2
+    t.integer  "year",       limit: 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], name: "index_rails_admin_histories", using: :btree
+
+  create_table "sites", force: true do |t|
+    t.string   "name"
+    t.string   "link"
+    t.text     "description"
+    t.boolean  "is_active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "stype",       limit: 20
+  end
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "taggings", ["article_id"], name: "index_taggings_on_article_id", using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "name"
+    t.string   "instance_url"
+    t.string   "identity_url"
+    t.string   "client_id"
+    t.string   "user_name"
+    t.string   "password"
+    t.string   "crypted_password"
+    t.string   "login_url"
+    t.string   "organization_id"
+    t.string   "user_id"
+    t.string   "profile_thumbnail_url"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.binary   "refresh_token"
+    t.binary   "access_token"
+    t.string   "sf_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
