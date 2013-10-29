@@ -1,0 +1,28 @@
+<!-- Widget -->
+<% if @article_month %>
+    <div class="widget">
+        <div class="widget-title">
+            <h3>Archives</h3>
+        </div>
+        <div class="accordion" id="accordion1">
+            <% @article_month.sort.reverse.each do |month, articles| %>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse<%= month.strftime('%B%Y') %>" >
+                            <%= month.strftime('%B %Y') %> (<%= articles.count %>)
+                        </a>
+                    </div>
+                    <div id="collapse<%= month.strftime('%B%Y')%>" class="accordion-body collapse <%= @end_month == month ? 'in' : ''%>">
+                        <div class="accordion-inner">
+                            <ul class="the-icons">
+                                <% for article in articles %>
+                                    <li><%= link_to article.subject, article %></li>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+<% end %>

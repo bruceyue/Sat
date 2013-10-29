@@ -1,0 +1,50 @@
+<div class="row-fluid">
+    <div class="span12 content-wrapper">
+
+        <div class="row-fluid content-home">
+            <div class="login-left-block">
+            <p>
+                If you come to here the first time, click
+                <a>Login with Salesforce</a> <i class="icon-resize-full"></i>
+                at the top.
+            </p>
+            </div>
+            <hr class="dotted">
+            <div class="login-left-block">
+                <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+                <div class="register-input-block email">
+                    <%= f.email_field :email, placeholder: "Email" %>
+                </div>
+
+                <div class="register-input-block password">
+                    <%= f.password_field :password, placeholder: "Password" %>
+                </div>
+
+                <div class="login-remember-block">
+                    <div id="login_remember_div" class="checkboxOff">
+                        <% if devise_mapping.rememberable? %>
+                            <%= f.check_box :remember_me, onclick: "logincheckboxCheck()", class: "checkboxOn", id: "login_remember" %>
+                        <% end %>
+                    </div>
+                    <div class="register-terms-text login-size">Remember me</div>
+                </div>
+
+                <%= f.submit "Login", class: "login-button btn-green" %>
+                <% end %>
+            </div>
+        </div>
+        <hr class="dotted">
+
+    </div>
+</div>
+<script>
+  function logincheckboxCheck() {
+      var ch_div = '#login_remember_div';
+      if ($('#login_remember').is(':checked')) {
+        $(ch_div).addClass("checkboxOn");
+      } else {
+        $(ch_div).removeClass("checkboxOn");
+        $(ch_div).addClass("checkboxOff");
+      }
+  }
+</script>

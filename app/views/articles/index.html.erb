@@ -1,33 +1,63 @@
-<h1>Listing articles</h1>
+<!-- begin:content -->
+<div class="row-fluid">
+    <div class="span12 content-wrapper">
 
-<table>
-  <thead>
-    <tr>
-      <th>Subject</th>
-      <th>Body</th>
-      <th>Is published</th>
-      <th>Picture</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+        <!-- begin:elements -->
+        <div class="row-fluid content-home">
+            
+            <!-- begin:article-article -->
+            <div class="span9">
+                <!-- begin:loop-article -->
+                <% @articles.each do |article| %>
+                    <div class="row-fluid">
+                        <div class="span12 blog-content">
+                            <div class="page-header">
+                                <h2><%= link_to article.subject, article %></h2>
+                            </div>
+                            <small class="meta-date">
+                                <% if article.tag_list.size != 0 %>
+                                    Tags: 
+                                    <%= raw article.tags.map { |t| link_to t.name, tag_path(t.name) }.join(', ') %> |
+                                <% end %>
+                                <% if article.user %>
+                                    By:</span> <a href="#"><%= article.user.name %> </a> |
+                                    <%= article.created_at.strftime('%b %d, %Y')%>
+                                <% end %>
+                                <% if article.comments.size != 0 %>
+                                    | Comments: <%= link_to article.comments.size, article %>
+                                <% end %>
+                            </small>
+                            <p> 
+                                <%= markdown(article.body).truncate(800, :omission => "......").html_safe %><br/>
+                            </p>
+                            <p>
+                                <%= link_to 'Read More...', article, class: 'btn btn-green'%>
+                            </p>
+                        </div>
+                    </div>
 
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.subject %></td>
-        <td><%= article.body %></td>
-        <td><%= article.is_published %></td>
-        <td><%= article.picture %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                    <hr class="dotted">
+                <% end %>
 
-<br>
+                <!--begin:pagination-->
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="pagination pagination-centered">
+                            <%= will_paginate @articles, previous_label: '<<', next_label: '>>' %>
+                        </div>
+                    </div>
+                </div>
+                <!--end:pagination--> 
+            </div>
+            <!-- end:article-article --> 
 
-<%= link_to 'New Article', new_article_path %>
+            <!-- begin:article-sidebar -->
+            <%= render 'components/article_siderbar'%>
+            <!-- end:article-sidebar -->
+
+        </div>
+        <!-- end:elements --> 
+
+    </div>
+</div>
+<!-- end:content -->

@@ -1,6 +1,24 @@
 Sat::Application.routes.draw do
-  resources :articles
-  root :to => 'articles#index'
+  get 'home/index'
+  root :to => 'home#index'
+
+  resources :articles do
+    resources :comments
+    resources :likes, :only => [:create, :destroy]
+  end
+
+  get 'tags/:tag', to: 'articles#index', as: :tag
+
+  resources :books
+
+  get 'home/aboutus'
+  get 'home/coolsite'
+  
+  devise_for :users
+  get '/auth/:provider/callback', to: 'sessions#create', :as => :oauth_callback
+  get '/auth/failure', to: 'sessions#failure'
+  get '/logout', to: 'sessions#destroy', :as => :logout
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

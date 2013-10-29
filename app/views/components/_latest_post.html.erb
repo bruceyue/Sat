@@ -1,0 +1,40 @@
+<div class="widget">
+    <div class="widget-title">
+        <h3>Popular Posts</h3>
+    </div>
+    <ul>
+        <% if Article.order('created_at DESC').size != 0 %>
+            <% Article.order('created_at DESC').limit(5).each do |article| %>
+            <li>
+                <div class="column-posts">
+                    <div class="featured-post-img">
+                        <a href="#">
+                            <% if (article.user && article.user.email) %>
+                                <%= gravatar_image_tag article.user.email, alt: article.user.name %>
+                                <% else %>
+                                <%= image_tag('avatar.jpg')%>
+                            <% end %>
+                        </a>
+                    </div>
+                    <div class="featured-post-content">
+                        <h5>
+                            <%= link_to article.subject, article %>
+                            <small class="pull-right">
+                                <%= article.comments.count %> <i class="icon-comments"></i>
+                            </small>
+                        </h5>
+                        <small> <i class="icon-calendar"></i>
+                            <time datetime="2013-05-02"><%= article.created_at.strftime('%b %d, %Y') %> </time>
+                            <a href="#">,
+                                <% if article.user %>
+                                    <%= article.user.name %>
+                                <% end %>
+                            </a>
+                        </small> 
+                    </div>
+                </div>
+            </li>
+            <% end %>
+        <% end %>
+    </ul>
+</div>

@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+    <%= form_for([@article, @article.comments.build], remote: true, id: 'comment_form') do |f| %>
+      <%= markdown(f.text_area :body, rows: 6, class: "commentbox span12 clearfix", placeholder: "Type your comment") %>
+      <%= link_to "Markdown Syntax", "http://bywordapp.com/markdown/syntax.html", :target => "_blank" %>,
+      Support for <%= link_to "Emoji cheat sheet", "http://www.emoji-cheat-sheet.com/", :target => "_blank"%>
+      <%= f.submit "Post Comment", class: "btn btn-large btn-block btn-green" %>
+      <br/>
+    <% end %>
+<% end %>

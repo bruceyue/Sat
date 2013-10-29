@@ -1,24 +1,68 @@
-<p id="notice"><%= notice %></p>
+<!-- begin:content -->
+<div class="row-fluid">
+    <div class="span12 content-wrapper">
 
-<p>
-  <strong>Subject:</strong>
-  <%= @article.subject %>
-</p>
+        <!-- begin:elements -->
+        <div class="row-fluid content-home">
 
-<p>
-  <strong>Body:</strong>
-  <%= @article.body %>
-</p>
+            <!-- begin:article-article -->
+            <div class="span9">
+                <!-- begin:loop-article -->
+                <div class="row-fluid">
+                    <div class="span12 blog-content">
+                        <div class="page-header">
+                            <h2><%= @article.subject %></h2>
+                        </div>
+                        <small class="meta-date">
+                            <% if @article.tag_list.size != 0 %>
+                                Tags: 
+                                <%= raw @article.tags.map { |t| link_to t.name, tag_path(t.name) }.join(', ') %> |
+                            <% end %>
+                            <% if @article.user %>
+                                By:</span> <a href="#"><%= @article.user.name %>  </a> |
+                                <%= @article.created_at.strftime('%b %d, %Y')%>
+                            <% end %>
+                            <% if @article.comments.count != 0 %>
+                                | Comments: <%= link_to @article.comments.count, @article %>
+                            <% end %>
+                        </small>
+                        <p> 
+                            <%= markdown @article.body %><br/>
+                        </p>
+                    </div>
+                </div>
+                <hr class="dotted">
+                
+                <!-- begin:post-comment -->
+                <div class="row-fluid">
+                    <div class="span12 coment">
+                        <h3>
+                            <% if !user_signed_in? %>
+                              <%= form_tag("/auth/salesforce", id: "loginForm") do %>
+                                <a href="javascript:{}" onclick="document.getElementById('loginForm').submit()">Sign in through Salesforce to comment</a>
+                              <% end %>
+                            <% end %>
+                        </h3>
+                        <section class="comments">
+                            <%= render @article.comments.order("created_at") %>
+                        </section>
+                        <div id="comment_box">
+                            <%= render "comments/form" %>
+                        </div>
+                    </div>
+                </div>
+                <!-- end:post-comment -->
 
-<p>
-  <strong>Is published:</strong>
-  <%= @article.is_published %>
-</p>
+            </div>
+            <!-- end:article-article --> 
 
-<p>
-  <strong>Picture:</strong>
-  <%= @article.picture %>
-</p>
+            <!-- begin:article-sidebar -->
+            <%= render 'components/article_siderbar'%>
+            <!-- end:article-sidebar -->
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+        </div>
+        <!-- end:elements --> 
+
+    </div>
+</div>
+<!-- end:content -->

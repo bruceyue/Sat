@@ -1,0 +1,24 @@
+<article class="comment">
+    <a class="comment-img" href="#">
+        <% if comment.user %>
+            <%= gravatar_image_tag comment.user.email, alt: comment.user.name %>
+        <% else %>
+        <%= image_tag('avatar.jpg', width: 55, height: 55)%>
+        <% end %>
+    </a>
+    <div class="comment-body">
+        <div class="text">
+            <%= markdown comment.body %>
+        </div>
+        <p class="attribution">
+            <% if comment.user %>
+                by <a href="#"><%= comment.user.name %></a> at <%= comment.created_at.strftime("%b %-d, %Y - %k:%M %p") %>
+            <% else %>
+                by <a href="#">guest </a> at <%= comment.created_at.strftime("%b %-d, %Y - %k:%M %p") %>
+            <% end %>
+            <% if (comment.user != nil && comment.user == current_user) %>
+                <%= link_to 'Delete', [comment.article, comment], confirm: 'Are you sure?', method: :delete, remote: true %>
+            <% end %>
+        </p>
+    </div>
+</article>

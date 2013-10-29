@@ -1,0 +1,109 @@
+<!-- begin:top-bar -->
+<div class="row-fluid" id="topbar">
+    <div class="span12">
+        <!-- begin:top-bar-menu -->
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="top-bar">
+                    <ul>
+                        <li><a href="/"><i class="icon-home"></i>Home</a></li>
+                        <% if !user_signed_in? %>
+                            <li>
+                                <%= form_tag("/auth/salesforce", id: "loginForm", style: "height:2px") do %>
+                                    <a href="javascript:{}" onclick="document.getElementById('loginForm').submit()" ><i class="icon-signin"></i>Login with Salesforce</a>
+                                <% end %>
+                            </li>
+                        <% else %>
+                            <li><a href="">&nbsp;<i class="icon-user"></i><%= current_user.name %></a></li>
+                            <li><a href="/logout">&nbsp;<i class="icon-signout"></i>Logout</a></li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- end:top-bar-menu -->
+
+        <!-- begin:logo-search -->
+        <div class="row-fluid">
+            <div class="span12" id="header">
+                <div class="logo">
+                    <h1>
+                        Share All Tech
+                        <span>.</span>
+                        <small>Learn thoroughly what you learn; let your conduct be worthy of what is learnt.</small>
+                    </h1>
+                </div>
+                <div class="search-form">
+                    <div class="input-append">
+                        <%= render "components/search_form"%>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end:logo-search -->
+    </div>
+</div>
+<!-- end:top-bar -->
+
+<!-- begin:nav-bar -->
+<div class="row-fluid">
+    <div class="span12" style="margin-bottom:0;">
+        <div class="navbar" data-spy="affix">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <div class="nav-collapse collapse navbar-responsive-collapse">
+                        <ul class="nav">
+                            <li class="dropdown">
+                                <%= link_to "Home", home_index_path %></li>
+                            </li>
+                            <li class="dropdown">
+                                <%= link_to "Articles", articles_path %></li>
+                            </li>
+                            <li class="dropdown">
+                                <%= link_to "Books", books_path %></li>
+                            </li>
+                            <li class="dropdown">
+                                <%= link_to "Cool Sites", home_coolsite_path %></li>
+                            </li>
+                            <li>
+                                <%= link_to "About Us", home_aboutus_path %></li>
+                            </li>
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                    Services<b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">Salesforce</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Ruby on Rails</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav pull-right">
+                            <li class="dropdown active">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                    New
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><%= link_to "New Article", new_article_path %></li>
+                                    <li><%= link_to "New Book", new_book_path %></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.nav-collapse -->
+                </div>
+            </div>
+            <!-- /navbar-inner -->
+        </div>
+    </div>
+</div>

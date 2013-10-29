@@ -1,0 +1,25 @@
+<!-- begin:content -->
+<div class="row-fluid">
+    <div class="span12 content-wrapper">
+        <div class="row-fluid content-home">
+            <div class="span12">
+                <% @books.each do |book| %>
+                    <div class="row-fluid">
+                        <div class="span12 blog-content">
+                            <div class="page-header">
+                                <h2><%= book.name %></h2>
+                            </div>
+                            <small class="meta-date">
+                                Contributor: <%= book.contributor %> |
+                                Publication Date: <%= book.publication_date %>
+                            </small>
+                            <p> 
+                                <%= markdown book.btype %><br/>
+                            </p>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

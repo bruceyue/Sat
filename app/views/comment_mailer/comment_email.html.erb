@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+    <h1>
+        Hi, <%= @article.user.name %></h1>
+    <p>
+        Your article <%= link_to @article.subject, 'www.sharealltech.com/posts/'+@article.id.to_s %>have a new comment:</p>
+    <p>
+        <%= @article.comments.last.body %>
+    </p>
+</body>
+</html>

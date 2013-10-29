@@ -1,0 +1,10 @@
+<div class="widget widget-tags">
+    <div class="widget-title">
+        <h3>Tags</h3>
+    </div>
+    <ul>
+        <% tag_cloud Article.tag_counts.uniq do |tag| %>
+            <li><a href="<%= tag_path(tag.name) %>"><i class="icon-tag"></i><%= tag.name %></a></li>
+        <%end%>
+    </ul>
+</div>

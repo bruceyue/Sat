@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //= require jquery-2.0.3.min.js
+//= require jquery_ujs
 //= require_tree .
 
 $(document).ready(function() {
@@ -78,4 +79,8 @@ function initPage() {
     $("#workslider").carousel({
         interval: 4000
     });
+
+    // Disable href="#" links
+    $('a').click(function(){if ($(this).attr('href') == '#') {return false;}});
+    $('a').css('text-decoration', 'none');
 }

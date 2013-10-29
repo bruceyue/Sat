@@ -2,7 +2,7 @@
     <div class="span12 content-wrapper">
         <div class="row-fluid content-home elements">
             <div class="span6">
-                <div class="page-header">
+                <div class="page-header ph-fix">
                     <h2><i class="icon-flag"></i> Ruby on Rails</h2>
                 </div>
                 <div class="accordion" id="accordion1">
@@ -10,12 +10,12 @@
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#<%= site.id %>">
-                                    <%= site.name%>
+                                    <%= site.name %>
                                 </a>
                             </div>
                             <div id="<%= site.id %>" class="accordion-body collapse <%= n == 0 ? 'in' : '' %>">
                                 <div class="accordion-inner">
-                                    <a href="<%= site.link %>" target="_blank"><%= site.link %></a><br/>
+                                    <a href="<%= site.link %>" target="_blank"><i class="icon_link"></i><%= site.link %></a><br/>
                                     <%= site.description %>
                                 </div>
                             </div>
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="span6">
-                <div class="page-header">
+                <div class="page-header ph-fix">
                     <h2><i class="icon-cloud"></i> Salesforce</h2>
                 </div>
                 <div class="accordion" id="accordion2">
@@ -32,7 +32,7 @@
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<%= site.id %>">
-                                    <%= site.name%>
+                                    <%= site.name %>
                                 </a>
                             </div>
                             <div id="<%= site.id %>" class="accordion-body collapse <%= m == 0 ? 'in' : '' %>">

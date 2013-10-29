@@ -1,0 +1,130 @@
+<!-- begin:footer -->
+<div class="row-fluid">
+    <div class="span12 footer-widget" id="footer">
+        <div class="row-fluid footer-widget">
+            <div class="span3">
+                <div class="widget widget-popular">
+                    <h3>Popular Post</h3>
+                    <ul>
+                    <% if Article.order('created_at DESC').size != 0 %>
+                        <% Article.order('created_at DESC').limit(5).each do |article| %>
+                            <li>
+                                <%= link_to article.subject, article %>
+                                <span>
+                                    <time datetime="2013-05-02"><%= article.created_at.strftime('%b %d, %Y') %> </time>
+                                </span>
+                            </li>
+                        <% end%>
+                    <% end%>
+                    </ul>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="widget">
+                    <h3>Useful Link</h3>
+                    <ul>
+                        <li>
+                            <a href="https://success.salesforce.com/" target="_blank">Salesforce.com</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/" target="_blank">Github</a>
+                        </li>
+                        <li>
+                            <a href="http://msdn.microsoft.com/en-us/" target="_blank">Microsoft MSDN</a>
+                        </li>
+                        <li>
+                            <a href="http://techcrunch.com/" target="_blank">Techcrunch</a>
+                        </li>
+                        <li>
+                            <a href="http://www.forbes.com/home_usa/" target="_blank">Forbes</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="widget widget-photo">
+                    <h3>Photo Stream</h3>
+                    <ul class="photo-wrapper">
+                        <li class="photo">
+                            <a href="#"><%= image_tag("ruby.jpeg") %></a>
+                        </li>
+                        <li class="photo">
+                            <a href="#"><%= image_tag("rails.jpeg") %></a>
+                        </li>
+                        <li class="photo">
+                            <a href="#"><%= image_tag("force.jpg") %></a>
+                        </li>
+                        <li class="photo">
+                            <a href="#"><%= image_tag("cloud.jpeg") %></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="widget">
+                    <h3>Social Information</h3>
+                    <address> 
+                        <strong>ShareAllTech Inc.</strong>
+                        <br> 
+                        <i class="icon-home"></i> BeiJing China
+                        <br> 
+                        <i class="icon-phone"></i> 18501386876
+                        <br>
+                        <i class="icon-envelope"></i> <a href="mailto:bruce.yue@outlook.com">bruce.yue@outlook.com</a>
+                        <br>
+                        <i class="icon-link"></i> <a href="http://www.sharealltech.com">http://www.sharealltech.com</a>
+                        <br>
+                    </address>
+                    <div class="social-icon">
+                        <ul>
+                            <li>
+                                <a href="http://www.facebook.com/bruce.yue" class="social-facebook">
+                                    <i class="icon-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/bruceyue" class="social-twitter">
+                                    <i class="icon-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://plus.google.com/109788557844914128707" class="social-gplus">
+                                    <i class="icon-google-plus"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.linkedin.com/pub/bruce-yue/42/959/978" class="social-linkedin">
+                                    <i class="icon-linkedin"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://weibo.com/u/1043790213" class="social-weibo">
+                                    <i class="icon-weibo"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:footer -->
+
+<!-- begin:copyright -->
+<div class="row-fluid">
+    <div class="span12" id="copyright">
+        <div class="c-right">
+            <ul>
+                <li>
+                    <%= link_to "Home", home_index_path %></li>
+                </li>
+                <li>
+                    <%= link_to "About Us", home_aboutus_path %></li>
+                </li>
+            </ul>
+        </div>
+        <div class="c-left">&copy; Copyright <%= Time.now.year %> - ShareAllTech. Powered by <a href="#">Bruce Yue.</a></div>
+    </div>
+</div>
+<!-- end:copyright -->

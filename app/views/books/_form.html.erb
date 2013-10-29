@@ -1,0 +1,23 @@
+<div class="span12">
+    <%= form_for(@book) do |f| %>
+        <% if @book.errors.any? %>
+            <% @book.errors.full_messages.each do |msg| %>
+                <div id="error_explanation" class="alert alert-error fade in span11">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong><%= msg %></strong>
+                </div>
+            <% end %>
+        <% end %>
+        <div class="row-fluid">
+            <div class="span12 coment">
+                <h3>Create New Book</h3>
+                    <%= f.text_field :name, size: 30, placeholder: "Book Name", class: "span12 required" %>
+                    <%= f.text_field :contributor, placeholder: "Contributor", class: "span12" %>
+                    <%= f.text_field :publication_date, placeholder: "Publication Date", class: "span12 required", type: 'date' %>
+                    <%= f.text_area :btype, placeholder: "Type your content", rows: 25, class: "span12 clearfix required" %>
+                    <%= f.submit "Create", class: "btn btn-large btn-block btn-green" %>
+                </form>
+            </div>
+        </div>
+    <% end %>
+</div>
