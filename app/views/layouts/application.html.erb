@@ -2,8 +2,8 @@
 <html lang="en" class="no-js">
     <head>
         <title>ShareAllTech.com</title>
-        <%= stylesheet_link_tag    "application", media: "all" %>
-        <%= javascript_include_tag "application" %>
+        <%= stylesheet_link_tag    :application %>
+        <%= javascript_include_tag :application %>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="ruby, rails, ruby on rails, agile, books, github, web design and development, Salesforce, Apex code, Visualforce, Force.com, Database.com, Cloud, Flat-UI, Bootstrap, jQuery" />
@@ -24,5 +24,8 @@
             <%= yield %>
             <%= render "components/footer" %>
         </div>
+        <!-- GA -->
+        <%= render "components/ga" %>
+        <!-- end: GA -->
     </body>
 </html>
