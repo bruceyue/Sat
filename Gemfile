@@ -13,20 +13,13 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
-  gem 'execjs'
   gem 'uglifier', '>= 1.0.3'
   gem 'eco' # Embedded CoffeeScript templates
 end
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
-
+gem 'jquery-rails', '~> 2.1.0'
 gem 'mail'
 gem 'omniauth-salesforce', ">=1.0.3"
 gem 'omniauth'
@@ -37,7 +30,7 @@ gem 'rails_admin', '~> 0.3.0' # A Rails engine that provides an easy-to-use inte
 gem 'devise' #Users management
 gem 'redcarpet' #markdown
 gem 'coderay' #syntax highlight
-gem 'will_paginate', '>= 3.0.4'
+gem 'will_paginate', '>= 3.0.2'
 gem 'md_emoji'
 gem 'carrierwave' # image upload
 gem 'cloudinary' # image store
